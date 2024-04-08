@@ -36,9 +36,6 @@ export const Td = styled.td`
   text-align: ${(props) => (props.alignCenter ? "center" : "start")};
   width: ${(props) => (props.width ? props.width : "auto")};
 
-  @media (max-width: 500px) {
-    ${(props) => props.onlyWeb && "display: none"}
-  }
 `;
 
 const Grid = ({ users, setUsers, setOnEdit }) => {
@@ -46,17 +43,16 @@ const Grid = ({ users, setUsers, setOnEdit }) => {
     setOnEdit(item);
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (idusuarios) => {
     await axios
-      .delete("http://localhost:3306/" + id)
+      .delete(`http://localhost:5000/${idusuarios}`)
       .then(({ data }) => {
-        const newArray = users.filter((user) => user.id !== id);
-
+        const newArray = users.filter((users) => users.idusuarios !== idusuarios);
         setUsers(newArray);
         toast.success(data);
+        console.log("eliminado correctamente")
       })
       .catch(({ data }) => toast.error(data));
-
     setOnEdit(null);
   };
 
@@ -66,7 +62,7 @@ const Grid = ({ users, setUsers, setOnEdit }) => {
         <Tr>
           <Th>Nombre</Th>
           <Th>Gmail</Th>
-          <Th onlyWeb>Telefono</Th>
+          <Th>Telefono</Th>
           <Th></Th>
           <Th></Th>
         </Tr>
@@ -76,14 +72,12 @@ const Grid = ({ users, setUsers, setOnEdit }) => {
           <Tr key={i}>
             <Td width="30%">{item.name}</Td>
             <Td width="30%">{item.gmail}</Td>
-            <Td width="20%" onlyWeb>
-              {item.telefono}
-            </Td>
-            <Td alignCenter width="5%">
+            <Td width="20%">{item.telefono} </Td>
+            <Td width="5%">
               <FaEdit onClick={() => handleEdit(item)} />
             </Td>
-            <Td alignCenter width="5%">
-              <FaTrash onClick={() => handleDelete(item.id)} />
+            <Td width="5%">
+              <FaTrash onClick={() => handleDelete(item.idusuarios)} />
             </Td>
           </Tr>
         ))}

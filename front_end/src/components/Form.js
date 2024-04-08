@@ -50,6 +50,12 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
       user.gmail.value = onEdit.gmail;
       user.telefono.value = onEdit.telefono;
       user.fecha_nacimiento.value = onEdit.fecha_nacimiento;
+
+      console.log(user.gmail.value);
+      console.log(user.telefono.value);
+      console.log(user.fecha_nacimiento.value);
+      console.log(user.name.value);
+
     }
   }, [onEdit]);
 
@@ -69,7 +75,7 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
 
     if (onEdit) {
       await axios
-        .put("http://localhost:3306/" + onEdit.id, {
+        .put("http://localhost:5000/" + onEdit.idusuarios, {
           name: user.name.value,
           gmail: user.gmail.value,
           telefono: user.telefono.value,
@@ -77,9 +83,14 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
         })
         .then(({ data }) => toast.success(data))
         .catch(({ data }) => toast.error(data));
+      console.log('gmail cambiado', user.gmail.value);
+      console.log('telefono cambiado', user.telefono.value);
+      console.log('fecha cambiado', user.fecha_nacimiento.value);
+      console.log('nombre cambiado', user.name.value);
+      getUsers();
     } else {
       await axios
-        .post("http://localhost:3306", {
+        .post("http://localhost:5000", {
           name: user.name.value,
           gmail: user.gmail.value,
           telefono: user.telefono.value,
