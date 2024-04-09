@@ -45,16 +45,10 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
   useEffect(() => {
     if (onEdit) {
       const user = ref.current;
-
       user.name.value = onEdit.name;
       user.gmail.value = onEdit.gmail;
       user.telefono.value = onEdit.telefono;
       user.fecha_nacimiento.value = onEdit.fecha_nacimiento;
-
-      console.log(user.gmail.value);
-      console.log(user.telefono.value);
-      console.log(user.fecha_nacimiento.value);
-      console.log(user.name.value);
 
     }
   }, [onEdit]);
@@ -74,6 +68,7 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
     }
 
     if (onEdit) {
+      console.log(onEdit);
       await axios
         .put("http://localhost:5000/" + onEdit.idusuarios, {
           name: user.name.value,

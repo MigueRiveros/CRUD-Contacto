@@ -29,7 +29,7 @@ export const addUser = (req, res) => {
 
 export const updateUser = (req, res) => {
   const q =
-    "UPDATE usuarios SET `name` = ?, `gmail` = ?, `telefono` = ?, `fecha_nacimiento` = ? WHERE `id` = ?";
+    "UPDATE usuarios SET `name` = ?, `gmail` = ?, `telefono` = ?, `fecha_nacimiento` = ? WHERE `idusuarios` = ?";
 
   const values = [
     req.body.name,
@@ -46,7 +46,7 @@ export const updateUser = (req, res) => {
 };
 
 export const deleteUser = (req, res) => {
-  const q = "DELETE FROM usuarios WHERE `id` = ?";
+  const q = "DELETE FROM usuarios WHERE `idusuarios` = ?";
 
   db.query(q, [req.params.id], (err) => {
     if (err) return res.json(err);
