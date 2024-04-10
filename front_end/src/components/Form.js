@@ -50,7 +50,6 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
       user.gmail.value = onEdit.gmail;
       user.telefono.value = onEdit.telefono;
       user.fecha_nacimiento.value = onEdit.fecha_nacimiento;
-
     }
   }, [onEdit]);
 

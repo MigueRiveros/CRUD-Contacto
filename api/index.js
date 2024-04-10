@@ -18,11 +18,9 @@ app.use(cors({
   origin: 'http://localhost:3000'
 }));
 
-// Ruta para servir archivos estáticos desde la carpeta 'images'
-// Ruta para servir archivos estáticos desde la carpeta 'images'
+// Ruta para servir archivos estáticos desde la carpeta 'images' 
 const directorioImagenes = join(__dirname, 'images');
-console.log(directorioImagenes)
-app.use('crud/api', express.static(directorioImagenes));
+app.use('/api/images', express.static(directorioImagenes));
 
 // Rutas de usuario
 app.use("/", userRoutes);

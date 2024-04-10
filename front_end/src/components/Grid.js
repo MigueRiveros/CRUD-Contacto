@@ -56,7 +56,7 @@ const Grid = ({ users, setUsers, setOnEdit }) => {
       .catch(({ data }) => toast.error(data));
     setOnEdit(null);
   };
-
+  console.log("/////////////",users)
   return (
     <Table>
       <Thead>
@@ -74,7 +74,9 @@ const Grid = ({ users, setUsers, setOnEdit }) => {
           //console.log("ESTA ES LA IMAGEN***************",item.image),
           <Tr key={i}>
             <Td width="30%">
-            <img src={(item.image)}/>
+              <a href={item.image} target="_blank" rel="noopener noreferrer">
+                <img src={require("/Users/nugue/OneDrive/Desktop/crud/api/images/"+item.image)} style={{width:"150px"}}/>
+              </a>
             </Td>
             <Td width="30%">{item.name}</Td>
             <Td width="30%">{item.gmail}</Td>

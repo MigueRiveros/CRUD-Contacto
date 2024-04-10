@@ -25,7 +25,7 @@ export const getUsers = (_, res) => {
     const usersWithImageURL = data.map(user => {
       // Verifica si el usuario tiene una imagen asociada
       if (user.image) {
-        user.imageURL = `http://localhost:5000/api/images/${user.image}`;
+        user.imageURL = `"/Users/nugue/OneDrive/Desktop/crud/api/images/"${user.image}`;
       }
       return user;
     });
@@ -60,14 +60,16 @@ export const addUser = (req, res) => {
 };
 
 export const updateUser = (req, res) => {
-  const q =
-    "UPDATE usuarios SET `name` = ?, `gmail` = ?, `telefono` = ?, `fecha_nacimiento` = ? WHERE `idusuarios` = ?";
+  fileUpload(req, res, (err) => {
+    const q =
+    "UPDATE usuarios SET `name` = ?, `gmail` = ?, `telefono` = ?, `fecha_nacimiento` = ?, `image` = ? WHERE `idusuarios` = ?";
 
   const values = [
     req.body.name,
     req.body.gmail,
     req.body.telefono,
     req.body.fecha_nacimiento,
+    req.file ?req.file.filename: null
   ];
 
   db.query(q, [...values, req.params.id], (err) => {
@@ -75,6 +77,7 @@ export const updateUser = (req, res) => {
     
     return res.status(200).json("Usuario actualizado con exito.");
   });
+  })
 };
 
 export const deleteUser = (req, res) => {
