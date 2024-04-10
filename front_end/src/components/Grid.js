@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
 
+
 const Table = styled.table`
   width: 100%;
   background-color: #fff;
@@ -60,6 +61,7 @@ const Grid = ({ users, setUsers, setOnEdit }) => {
     <Table>
       <Thead>
         <Tr>
+          <Th>Icono</Th>
           <Th>Nombre</Th>
           <Th>Gmail</Th>
           <Th>Telefono</Th>
@@ -69,7 +71,11 @@ const Grid = ({ users, setUsers, setOnEdit }) => {
       </Thead>
       <Tbody>
         {users.map((item, i) => (
+          //console.log("ESTA ES LA IMAGEN***************",item.image),
           <Tr key={i}>
+            <Td width="30%">
+            <img src={(item.image)}/>
+            </Td>
             <Td width="30%">{item.name}</Td>
             <Td width="30%">{item.gmail}</Td>
             <Td width="20%">{item.telefono} </Td>
