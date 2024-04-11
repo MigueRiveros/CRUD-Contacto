@@ -15,6 +15,7 @@ const Table = styled.table`
   margin: 20px auto;
   word-break: break-all;
 `;
+export const urlBackend = "http://localhost:5000/api/images/"
 
 export const Thead = styled.thead``;
 
@@ -23,6 +24,7 @@ export const Tbody = styled.tbody``;
 export const Tr = styled.tr``;
 
 export const Th = styled.th`
+
   text-align: start;
   border-bottom: inset;
   padding-bottom: 5px;
@@ -74,8 +76,8 @@ const Grid = ({ users, setUsers, setOnEdit }) => {
           //console.log("ESTA ES LA IMAGEN***************",item.image),
           <Tr key={i}>
             <Td width="30%">
-              <a href={item.image} target="_blank" rel="noopener noreferrer">
-                <img src={require("/Users/nugue/OneDrive/Desktop/crud/api/images/"+item.image)} style={{width:"150px"}}/>
+              <a href={urlBackend+item.image} target="_blank" rel="noopener noreferrer">
+                <img src={(urlBackend+item.image)} style={{width:"150px"}}/>
               </a>
             </Td>
             <Td width="30%">{item.name}</Td>
